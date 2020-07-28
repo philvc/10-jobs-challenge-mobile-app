@@ -1,6 +1,6 @@
 // modules
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, VirtualizedList } from 'react-native';
 import { useApolloClient } from '@apollo/client';
 
 // components
@@ -12,33 +12,31 @@ import { GET_GAMES_CLIENT } from '../../graphql/queries/client/getGamesClient';
 
 const ChallengesList = () => {
 
-  // client
-  const client = useApolloClient()
-  const { player }: any = client.readQuery({ query: GET_PLAYER_CLIENT })
-  const { games }: any = client.readQuery({
-    query: GET_GAMES_CLIENT,
-    variables: {
-      playerId: player.id
-    }
-  })
+  // storage
+  const challenges = localStorage.getItem('challenges') || []
+
+  // // client
+  // const client = useApolloClient()
+  // const { player }: any = client.readQuery({ query: GET_PLAYER_CLIENT })
+  // const { games }: any = client.readQuery({
+  //   query: GET_GAMES_CLIENT,
+  //   variables: {
+  //     playerId: player.id
+  //   }
+  // })
 
   // state
-  const [gamesList, setGamesList] = React.useState(games)
+  const [gamesList, setGamesList] = React.useState(challenges)
 
-  // utils
-  function renderItem({ item }: any) {
-    return (
-      <ChallengeItem challenge={item} />
-    )
-  }
 
   return (
     <View>
       <Text>Challenges list</Text>
-      <FlatList
+      <VirtualizedList
         data={gamesList}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
+        renderItem={({ item }) => <ChallengeItem challenge={item} />}
+        keyExtractor={(item: any) => item.id}
+        getItemCount={(data: any) => data.length}
       />
     </View>
   )

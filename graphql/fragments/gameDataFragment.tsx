@@ -17,6 +17,7 @@ export const GAME_DATA_FRAGMENT = gql`
     applicantId
     missionsAccomplished
     createdAt
+    people
   }
   ${PLAYER_DATA_FRAGMENT}
 `

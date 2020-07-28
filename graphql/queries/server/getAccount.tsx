@@ -23,6 +23,7 @@ export const GET_ACCOUNT = gql`
         applicantId
         createdAt
         missionsAccomplished
+        people
       }
     }
   }
