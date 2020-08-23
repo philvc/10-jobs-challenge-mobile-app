@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './components/login';
 import ChallengesList from './components/challenges-list'
 import Challenge from './components/challenge';
+import JobDescription from './components/job-description';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -20,7 +21,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Challenges' headerMode="none">
+        <Stack.Navigator initialRouteName='JobDescription' headerMode="none">
           <Stack.Screen
             name='Challenges'
             component={ChallengesList}
@@ -28,6 +29,7 @@ export default function App() {
           />
           <Stack.Screen name='Login' component={Login} />
           <Stack.Screen name='Challenge' component={Challenge} />
+          <Stack.Screen name='JobDescription' component={JobDescription} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

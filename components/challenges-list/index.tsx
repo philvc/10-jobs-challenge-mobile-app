@@ -1,10 +1,11 @@
 // modules
 import React from 'react';
-import { View, Text, VirtualizedList } from 'react-native';
+import { View, Text, VirtualizedList, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { useApolloClient } from '@apollo/client';
 
 // components
 import ChallengeItem from './components/challenge-item';
+import NewChallengeForm from './components/newChallengeForm';
 
 // queries
 import { GET_PLAYER_CLIENT } from '../../graphql/queries/client/getPlayerClient';
@@ -27,19 +28,79 @@ const ChallengesList = () => {
 
   // state
   const [gamesList, setGamesList] = React.useState(challenges)
+  const [isModalVisible, setIsModalVisible] = React.useState(false)
 
+  // handlers
+  function handleNewChallenge() {
+    console.log('isModalVisible', isModalVisible)
+    setIsModalVisible(true)
+  }
+
+  console.log(isModalVisible)
 
   return (
-    <View>
-      <Text>Challenges list</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Challenges</Text>
       <VirtualizedList
+        style={styles.challengesList}
         data={gamesList}
         renderItem={({ item }) => <ChallengeItem challenge={item} />}
         keyExtractor={(item: any) => item.id}
         getItemCount={(data: any) => data.length}
       />
+      <View>
+        <View style={styles.newChallengeButton}>
+          <TouchableOpacity onPress={handleNewChallenge}>
+            <Text style={styles.newChallengeText}>New Challenge</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.modalView}>
+        <Modal
+          visible={false}
+          animationType="slide"
+          transparent={true}
+          presentationStyle="fullScreen"
+        >
+          <NewChallengeForm />
+        </Modal>
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 24,
+  },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "white",
+    height: "100%",
+
+  },
+  newChallengeButton: {
+    width: 200,
+    padding: 5,
+    margin: 10,
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 20,
+  },
+  newChallengeText: {
+    textAlign: 'center',
+  },
+  challengesList: {
+    maxHeight: "fit-content",
+  },
+  modalView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 0,
+  }
+})
 
 export default ChallengesList;
