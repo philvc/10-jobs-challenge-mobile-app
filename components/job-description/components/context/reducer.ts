@@ -1,17 +1,24 @@
 export const actions = {
     jobTitleChanged: 'jobTitleChanged',
-    environmentChanged: 'environmentChanged',
     stepChanged: 'stepChanged',
+    currentStepChanged: 'currentStepChanged',
 }
 
-export const initialState = {
+interface initialStateInterface {
+    step: number,
+    jobTitle: string,
+    maxStep: number,
+    currentStep: number,
+}
+
+export const initialState: initialStateInterface = {
     jobTitle: '',
-    environment: '',
     step: 0,
     maxStep: 6,
+    currentStep: 0,
 }
 
-export function reducer(state: any, action: any) {
+export function reducer(state: initialStateInterface, action: any) {
     switch (action.type) {
         case actions.jobTitleChanged:
             return {
@@ -22,6 +29,11 @@ export function reducer(state: any, action: any) {
             return {
                 ...state,
                 step: action.payload
+            }
+        case actions.currentStepChanged:
+            return {
+                ...state,
+                currentStep: action.payload
             }
 
         default:
