@@ -4,10 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // components
-import Login from './components/login';
-import ChallengesList from './components/challenges-list'
-import Challenge from './components/challenge';
-import JobDescription from './components/job-description';
+import Login from './modules/login';
+import ChallengesList from './modules/challenges-list'
+import Challenge from './modules/challenge';
+import JobDescription from './modules/job-description';
+import Dashboard from './modules/dashboard';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -21,13 +22,14 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='JobDescription' headerMode="none">
+        <Stack.Navigator initialRouteName='Dashboard' headerMode="none">
           <Stack.Screen
             name='Challenges'
             component={ChallengesList}
             options={{ title: undefined }}
           />
           <Stack.Screen name='Login' component={Login} />
+          <Stack.Screen name='Dashboard' component={Dashboard} />
           <Stack.Screen name='Challenge' component={Challenge} />
           <Stack.Screen name='JobDescription' component={JobDescription} />
         </Stack.Navigator>

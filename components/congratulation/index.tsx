@@ -1,28 +1,29 @@
+// modules
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-// context
-import { useJobDescriptionContext } from '../context/JobDescriptionContext';
-
-
-
-const Header = () => {
-
-  const { data, dispatch } = useJobDescriptionContext()
+const Congratulation = () => {
   return (
     <View style={styles.container}>
-      <Text> {data.step + 1} / 3 </Text>
+      <Text style={styles.text}>
+        Congratulations !
+      </Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    minWidth: '100%',
+    minHeight: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '65px'
+
+  },
+  text: {
+    fontSize: 26
   }
 })
 
-export default Header;
+export default Congratulation;

@@ -1,5 +1,7 @@
 export const actions = {
     jobTitleChanged: 'jobTitleChanged',
+    companyTypesChanged: 'companyTypesChanged',
+    wishListChanged: 'wishListChanged',
     stepChanged: 'stepChanged',
     currentStepChanged: 'currentStepChanged',
 }
@@ -7,12 +9,16 @@ export const actions = {
 interface initialStateInterface {
     step: number,
     jobTitle: string,
+    companyTypes: string,
+    wishList: string,
     maxStep: number,
     currentStep: number,
 }
 
 export const initialState: initialStateInterface = {
     jobTitle: '',
+    companyTypes: '',
+    wishList: '',
     step: 0,
     maxStep: 6,
     currentStep: 0,
@@ -24,6 +30,16 @@ export function reducer(state: initialStateInterface, action: any) {
             return {
                 ...state,
                 jobTitle: action.payload
+            }
+        case actions.companyTypesChanged:
+            return {
+                ...state,
+                companyTypes: action.payload
+            }
+        case actions.wishListChanged:
+            return {
+                ...state,
+                companyTypes: action.payload
             }
         case actions.stepChanged:
             return {

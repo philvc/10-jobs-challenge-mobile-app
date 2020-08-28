@@ -11,6 +11,7 @@ import { useJobDescriptionContext } from './components/context/JobDescriptionCon
 import NavigationFooter from './components/navigation-footer';
 import Header from './components/header';
 import WishList from './modules/wish-list';
+import Congratulation from '../../components/congratulation';
 
 const JobDescription = () => {
 
@@ -27,6 +28,7 @@ const JobDescription = () => {
         <Stack.Screen name='JobTitle' component={JobTitle} />
         <Stack.Screen name='CompanyTypes' component={CompanyTypes} />
         <Stack.Screen name='WishList' component={WishList} />
+        <Stack.Screen name='Congratulation' component={Congratulation} />
       </Stack.Navigator>
       <NavigationFooter />
     </JobDescriptionContextProvider >

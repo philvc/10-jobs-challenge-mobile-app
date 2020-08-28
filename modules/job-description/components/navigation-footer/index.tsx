@@ -16,16 +16,19 @@ const NavigationFooter = () => {
   const { step } = data;
   const navigation = useNavigation()
 
-  const enumRoute = ['JobTitle', 'CompanyTypes', 'WishList']
+  const enumRoute = ['JobTitle', 'CompanyTypes', 'WishList', 'Congratulation']
+
   // Handlers
   function handleOnPress(value: number) {
-    if (value >= 0) {
+
+    if (value >= 0 && value < 3) {
 
       dispatch({ type: actions.stepChanged, payload: value })
     }
-    console.log('value step', value)
     navigation.navigate('JobDescription', { screen: enumRoute[value] })
+
   }
+  console.log('step', step)
   return (
     <View style={styles.container}>
       {step !== 0 ? (
@@ -36,9 +39,15 @@ const NavigationFooter = () => {
           <View></View>
         )
       }
-      <TouchableOpacity style={styles.navigationButton} onPress={() => handleOnPress(step + 1)}>
-        <Text>Next</Text>
-      </TouchableOpacity>
+      {step !== 3 ? (
+        <TouchableOpacity style={styles.navigationButton} onPress={() => handleOnPress(step + 1)}>
+          <Text>Next</Text>
+        </TouchableOpacity>
+      ) :
+        (
+          <View></View>
+        )
+      }
     </View>
   )
 }
