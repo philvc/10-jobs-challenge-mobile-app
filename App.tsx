@@ -22,16 +22,16 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Dashboard' headerMode="none">
+        <Stack.Navigator initialRouteName='dashboard' headerMode="none">
           <Stack.Screen
-            name='Challenges'
+            name='challenges'
             component={ChallengesList}
             options={{ title: undefined }}
           />
-          <Stack.Screen name='Login' component={Login} />
-          <Stack.Screen name='Dashboard' component={Dashboard} />
-          <Stack.Screen name='Challenge' component={Challenge} />
-          <Stack.Screen name='JobDescription' component={JobDescription} />
+          <Stack.Screen name='login' component={Login} />
+          <Stack.Screen name='dashboard' component={Dashboard} />
+          <Stack.Screen name='challenge' component={Challenge} />
+          <Stack.Screen name='jobdescription' component={JobDescription} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

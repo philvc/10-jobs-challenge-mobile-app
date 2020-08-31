@@ -54,7 +54,7 @@ const Login = ({ navigation }: any) => {
         // update storage
         localStorage.setItem('player', JSON.stringify(player))
         localStorage.setItem('games', JSON.stringify(games))
-        navigation.navigate('Challenges')
+        navigation.navigate('challenges')
       }
     })
 

@@ -1,7 +1,9 @@
 // modules
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import PageTitle from '../../components/page-title';
+import MissionCard from './components/mission-card';
 
 const Dashboard = () => {
 
@@ -15,26 +17,42 @@ const Dashboard = () => {
 
 
   return (
-    <View>
-      <View>
-        <Text>Dashboard</Text>
-      </View>
-      <View>
-        <TouchableOpacity onPress={() => handleOnPress('JobDescription')}>
-          <Text>1</Text>
-        </TouchableOpacity>
+    <View style={styles.dashboardContainer}>
+      <Image
+        style={styles.challengeListIcon}
+        source={require('./assets/challenges-list-icon.svg')}
+      />
+      <PageTitle text={'DASHBOARD'} />
+      <View style={styles.dashboardBodyContainer}>
+        <MissionCard mission={{ type: 'jobdescription', isLock: false }} />
+        <MissionCard mission={{ type: '3jobs', isLock: true }} />
       </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  missionCard: {
-    borderRadius: 12,
-    borderColor: 'rgba(0,0,0, 0.5)',
+  dashboardContainer: {
+    padding: 15,
+    display: 'flex',
+    flexDirection: 'column',
+    position: "relative"
 
   },
-
+  dashboardBodyContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  challengeListIcon: {
+    width: 15,
+    height: 15,
+    position: 'absolute',
+    transform: 'translateY(50%)',
+  }
 })
 
 export default Dashboard;

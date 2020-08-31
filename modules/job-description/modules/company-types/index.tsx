@@ -6,6 +6,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import styles from '../../styles/style'
 import { useJobDescriptionContext } from '../../components/context/JobDescriptionContext';
 import { actions } from '../../components/context/reducer';
+import PageTitle from '../../../../components/page-title';
 
 const CompanyTypes = () => {
 
@@ -19,6 +20,7 @@ const CompanyTypes = () => {
 
   return (
     <View style={styles.pageContainer}>
+      <PageTitle text={'WORK ENVIRONMENT'} />
       <View style={styles.title}>
         <Text>Type the work environment you would like to work for !</Text>
       </View>

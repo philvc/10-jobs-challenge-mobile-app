@@ -16,7 +16,7 @@ const Header = () => {
 
   // Handlers
   function handleOnClick() {
-    navigation.navigate('Dashboard')
+    navigation.navigate('dashboard')
   }
 
   return (

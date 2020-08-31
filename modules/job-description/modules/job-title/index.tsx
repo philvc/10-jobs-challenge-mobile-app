@@ -9,6 +9,7 @@ import styles from '../../styles/style';
 import AutoFocusTextInput from '../../../../components/auto-focus-text-input';
 import { useJobDescriptionContext } from '../../components/context/JobDescriptionContext';
 import { actions } from '../../components/context/reducer';
+import PageTitle from '../../../../components/page-title';
 
 const JobTitle = () => {
 
@@ -22,6 +23,7 @@ const JobTitle = () => {
 
   return (
     <View style={styles.pageContainer}>
+      <PageTitle text={'JOBS KEY WORDS'} />
       <View style={styles.title}>
         <Text>Type a list of jobs you are looking for :</Text>
       </View>

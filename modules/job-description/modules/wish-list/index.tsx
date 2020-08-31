@@ -6,6 +6,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import styles from '../../styles/style'
 import { useJobDescriptionContext } from '../../components/context/JobDescriptionContext';
 import { actions } from '../../components/context/reducer';
+import PageTitle from '../../../../components/page-title';
 
 const WishList = () => {
 
@@ -19,6 +20,7 @@ const WishList = () => {
 
   return (
     <View style={styles.pageContainer}>
+      <PageTitle text={'WISHLIST'} />
       <View style={styles.title}>
         <Text>Do you already know some companies you would like to work for ?</Text>
       </View>

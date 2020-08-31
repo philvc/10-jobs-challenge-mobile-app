@@ -25,7 +25,7 @@ const NavigationFooter = () => {
 
       dispatch({ type: actions.stepChanged, payload: value })
     }
-    navigation.navigate('JobDescription', { screen: enumRoute[value] })
+    navigation.navigate('jobdescription', { screen: enumRoute[value] })
 
   }
   console.log('step', step)
