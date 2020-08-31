@@ -39,13 +39,15 @@ const NavigationFooter = () => {
           <View></View>
         )
       }
-      {step !== 3 ? (
-        <TouchableOpacity style={styles.navigationButton} onPress={() => handleOnPress(step + 1)}>
-          <Text>Next</Text>
+      {step === 2 ? (
+        <TouchableOpacity>
+          <Text style={styles.saveButtonText}>Save Mission</Text>
         </TouchableOpacity>
       ) :
         (
-          <View></View>
+          <TouchableOpacity style={styles.navigationButton} onPress={() => handleOnPress(step + 1)}>
+            <Text>Next</Text>
+          </TouchableOpacity>
         )
       }
     </View>
@@ -65,6 +67,22 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     paddingLeft: 30
 
+  },
+  saveButtonContainer: {
+
+
+  },
+  saveButtonText: {
+    fontStyle: 'normal',
+    fontSize: 16,
+    lineHeight: 10,
+    textAlign: 'center',
+    color: 'white',
+    backgroundColor: 'rgba(0,0,0, 0.5)',
+    borderRadius: 16,
+    padding: 15,
+    boxSizing: 'border-box',
+    marginRight: 5,
   }
 })
 
