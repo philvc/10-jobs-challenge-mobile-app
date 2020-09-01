@@ -2,6 +2,7 @@
 // modules
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Text } from 'react-native'
 
 // components
 import { JobDescriptionContextProvider } from './components/context/JobDescriptionContextProvider';
@@ -9,9 +10,9 @@ import JobTitle from './modules/job-title';
 import CompanyTypes from './modules/company-types';
 import { useJobDescriptionContext } from './components/context/JobDescriptionContext';
 import NavigationFooter from './components/navigation-footer';
-import Header from './components/header';
+import HomeHeader from '../../components/home-header';
 import WishList from './modules/wish-list';
-import Congratulation from '../../components/congratulation';
+import Stepper from './components/stepper'
 
 const JobDescription = () => {
 
@@ -19,16 +20,16 @@ const JobDescription = () => {
   const Stack = createStackNavigator()
   const { data } = useJobDescriptionContext()
 
-  // Handlers
-
+  console.log('steep value', data.step)
   return (
     <JobDescriptionContextProvider>
-      <Header />
+      <HomeHeader>
+        <Stepper />
+      </HomeHeader>
       <Stack.Navigator headerMode='none'>
         <Stack.Screen name='JobTitle' component={JobTitle} />
         <Stack.Screen name='CompanyTypes' component={CompanyTypes} />
         <Stack.Screen name='WishList' component={WishList} />
-        <Stack.Screen name='Congratulation' component={Congratulation} />
       </Stack.Navigator>
       <NavigationFooter />
     </JobDescriptionContextProvider >

@@ -8,16 +8,28 @@ import { actions } from '../context/reducer';
 
 // style
 import { useNavigation } from '@react-navigation/native';
+import { useMutation } from '@apollo/client';
+
+// graphql
+import { UPDATE_JOB_DESCRIPTION_SERVER } from '../../../../graphql/mutations/server/updateJobDescription'
 
 const NavigationFooter = () => {
 
   // Attributes
-  const { data, dispatch } = useJobDescriptionContext()
-  const { step } = data;
+  const { data: jobDescription, dispatch } = useJobDescriptionContext()
+  const { step } = jobDescription;
   const navigation = useNavigation()
 
   const enumRoute = ['JobTitle', 'CompanyTypes', 'WishList', 'Congratulation']
 
+  // Queries
+  const [updateJobDescription] = useMutation(UPDATE_JOB_DESCRIPTION_SERVER, {
+    onCompleted({ jobDescription }) {
+
+      navigation.navigate('congratulation')
+    }
+  })
+  console.log('step in nav footer', step)
   // Handlers
   function handleOnPress(value: number) {
 
@@ -28,7 +40,21 @@ const NavigationFooter = () => {
     navigation.navigate('jobdescription', { screen: enumRoute[value] })
 
   }
-  console.log('step', step)
+
+  function handleSaveJobDescription() {
+    const { step, wishList, jobTitle, companyTypes } = jobDescription
+
+    const data = updateJobDescription({
+      variables: {
+        id: '5f46c58f06f330b93b71349d',
+        description: jobTitle,
+        wishList: wishList,
+        step,
+        applicantId: "5e9582ecb1f1623b439af5ab"
+      }
+    })
+  }
+
   return (
     <View style={styles.container}>
       {step !== 0 ? (
@@ -40,7 +66,7 @@ const NavigationFooter = () => {
         )
       }
       {step === 2 ? (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleSaveJobDescription}>
           <Text style={styles.saveButtonText}>Save Mission</Text>
         </TouchableOpacity>
       ) :

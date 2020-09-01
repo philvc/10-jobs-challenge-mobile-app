@@ -9,6 +9,7 @@ import ChallengesList from './modules/challenges-list'
 import Challenge from './modules/challenge';
 import JobDescription from './modules/job-description';
 import Dashboard from './modules/dashboard';
+import Congratulation from './components/congratulation';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -32,6 +33,7 @@ export default function App() {
           <Stack.Screen name='dashboard' component={Dashboard} />
           <Stack.Screen name='challenge' component={Challenge} />
           <Stack.Screen name='jobdescription' component={JobDescription} />
+          <Stack.Screen name='congratulation' component={Congratulation} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

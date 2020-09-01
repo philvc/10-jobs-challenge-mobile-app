@@ -1,14 +1,15 @@
 
 
 import { createContext, useContext } from "react";
+import { initialStateInterface, initialState } from "./reducer";
 
 interface IJobDescriptionContext {
-  data: any,
+  data: initialStateInterface,
   dispatch: any,
 }
 
 export const JobDescriptionContext = createContext<IJobDescriptionContext>({
-  data: {},
+  data: initialState,
   dispatch: () => { }
 })
 

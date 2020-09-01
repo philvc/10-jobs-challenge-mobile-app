@@ -1,14 +1,19 @@
 // modules
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import HomeHeader from '../home-header';
 
 const Congratulation = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
-        Congratulations !
+    <>
+      <HomeHeader />
+      <View style={styles.container}>
+        <Text style={styles.text}>
+          Congratulations !
+          💪
       </Text>
-    </View>
+      </View>
+    </>
   )
 }
 
@@ -17,8 +22,8 @@ const styles = StyleSheet.create({
     minWidth: '100%',
     minHeight: '100%',
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 200,
 
   },
   text: {

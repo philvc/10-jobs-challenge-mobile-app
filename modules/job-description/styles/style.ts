@@ -13,12 +13,15 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        textAlign: 'center',
         marginBottom: 20,
         marginTop: 20,
         flexWrap: 'wrap',
         paddingHorizontal: 15,
+    },
+    titleText: {
         lineHeight: 23,
+        textAlign: 'center',
+
     }
 })
 

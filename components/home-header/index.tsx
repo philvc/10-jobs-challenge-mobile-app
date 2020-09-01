@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 // context
-import { useJobDescriptionContext } from '../context/JobDescriptionContext';
+import { useJobDescriptionContext } from '../../modules/job-description/components/context/JobDescriptionContext';
 import { useNavigation } from '@react-navigation/native';
 
 
 
-const Header = () => {
+const HomeHeader = ({ children }: any) => {
 
 
   // Attritubes
@@ -24,11 +24,11 @@ const Header = () => {
       <View style={styles.container}>
         <TouchableOpacity onPress={handleOnClick} style={styles.homeButton}>
           <Image
-            source={require('../../assets/home-icon.svg')}
+            source={require('./assets/home-icon.svg')}
             style={styles.homeIcon}
           />
         </TouchableOpacity>
-        <Text> {data.step + 1} / 3 </Text>
+        {children}
       </View>
     </View>
   )
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Header;
+export default HomeHeader;

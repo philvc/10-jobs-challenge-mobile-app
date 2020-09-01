@@ -6,7 +6,7 @@ export const actions = {
     currentStepChanged: 'currentStepChanged',
 }
 
-interface initialStateInterface {
+export interface initialStateInterface {
     step: number,
     jobTitle: string,
     companyTypes: string,
