@@ -10,7 +10,7 @@ const MissionCard = ({ mission }: any) => {
 
   // Handlers
   function handleOnPress() {
-    navigation.navigate('jobdescription')
+    navigation.navigate('missionintro')
   }
 
   // utils
@@ -22,7 +22,7 @@ const MissionCard = ({ mission }: any) => {
         return missionNameEnum[1]
     }
   }
-  const missionNameEnum = ['Da Vinci Code', 'Le Cobra']
+  const missionNameEnum = ['Mission 1', 'Mission 2']
 
 
 

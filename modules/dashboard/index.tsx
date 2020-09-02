@@ -11,18 +11,28 @@ const Dashboard = () => {
   const navigation = useNavigation()
 
   // Handlers
-  function handleOnPress(screen: string) {
-    navigation.navigate(screen)
+
+  function handleGoToChallenges() {
+    console.log('handle press')
+    navigation.navigate('challenges')
   }
 
 
   return (
     <View style={styles.dashboardContainer}>
-      <Image
-        style={styles.challengeListIcon}
-        source={require('./assets/challenges-list-icon.svg')}
-      />
-      <PageTitle text={'DASHBOARD'} />
+      <View style={styles.menuHeader} >
+        <View style={{ flex: 2 }}>
+          <TouchableOpacity onPress={handleGoToChallenges}>
+            <Image
+              source={require('./assets/challenges-list-icon.svg')}
+              style={styles.challengeListIcon}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flex: 7, transform: [{ translateX: '-10%' }] }}>
+          <PageTitle text={'DASHBOARD'} />
+        </View>
+      </View>
       <View style={styles.dashboardBodyContainer}>
         <MissionCard mission={{ type: 'jobdescription', isLock: false }} />
         <MissionCard mission={{ type: '3jobs', isLock: true }} />
@@ -32,14 +42,22 @@ const Dashboard = () => {
 }
 
 const styles = StyleSheet.create({
+  menuHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
   dashboardContainer: {
     padding: 15,
     display: 'flex',
     flexDirection: 'column',
-    position: "relative"
+    position: "relative",
 
   },
   dashboardBodyContainer: {
+    paddingVertical: 15,
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -50,8 +68,6 @@ const styles = StyleSheet.create({
   challengeListIcon: {
     width: 15,
     height: 15,
-    position: 'absolute',
-    transform: 'translateY(50%)',
   }
 })
 

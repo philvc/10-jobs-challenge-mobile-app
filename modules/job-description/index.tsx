@@ -18,9 +18,7 @@ const JobDescription = () => {
 
   // Attributes
   const Stack = createStackNavigator()
-  const { data } = useJobDescriptionContext()
 
-  console.log('steep value', data.step)
   return (
     <JobDescriptionContextProvider>
       <HomeHeader>

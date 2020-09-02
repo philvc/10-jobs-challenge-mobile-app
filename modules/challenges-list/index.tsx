@@ -40,8 +40,14 @@ const ChallengesList = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Challenges</Text>
-      <VirtualizedList
+      <Text style={styles.title}>Your 10 Jobs Challenges</Text>
+      <View style={styles.listContainer}>
+        <ChallengeItem challenge={{ title: "Challenge 1" }} />
+        <ChallengeItem challenge={{ title: "Challenge 2" }} />
+        <ChallengeItem challenge={{ title: "Challenge 3" }} />
+        <ChallengeItem challenge={{ title: "Challenge 4" }} />
+      </View>
+      {/* <VirtualizedList
         style={styles.challengesList}
         data={gamesList}
         renderItem={({ item }) => <ChallengeItem challenge={item} />}
@@ -64,12 +70,17 @@ const ChallengesList = () => {
         >
           <NewChallengeForm />
         </Modal>
-      </View>
+      </View> */}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  listContainer: {
+    padding: 15,
+    width: '100%',
+    marginTop: 20
+  },
   title: {
     fontSize: 24,
   },
@@ -79,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     height: "100%",
-
+    padding: 15
   },
   newChallengeButton: {
     width: 200,

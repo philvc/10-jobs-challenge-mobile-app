@@ -1,8 +1,7 @@
 // modules
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Challenge from '../../../challenge';
 
 
 const ChallengeItem = ({ challenge }: any) => {
@@ -12,17 +11,38 @@ const ChallengeItem = ({ challenge }: any) => {
 
   // handlers
   function handleClick() {
-    navigation.navigate('Challenge')
+    navigation.navigate('dashboard')
   }
+
   return (
-    <View>
-      <TouchableOpacity onPress={handleClick}>
-        <View>
-          <Text>{challenge.title}</Text>
-        </View>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <View>
+        <Text>{challenge.title}</Text>
+      </View>
+      <View>
+        <TouchableOpacity onPress={handleClick}>
+          <Image
+            source={require('./assets/arrow-right.svg')}
+            style={{ width: 20, height: 10 }}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 30,
+    paddingHorizontal: 15,
+    borderColor: 'rgba(0,0,0, 0.5)',
+    borderWidth: 1,
+    marginBottom: 10,
+    display: "flex",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+})
 
 export default ChallengeItem;
