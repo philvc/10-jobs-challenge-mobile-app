@@ -11,23 +11,25 @@ const HomeHeader = ({ children }: any) => {
 
 
   // Attritubes
-  const { data, dispatch } = useJobDescriptionContext()
   const navigation = useNavigation()
 
   // Handlers
   function handleOnClick() {
+    console.log('onclick')
     navigation.navigate('dashboard')
   }
 
   return (
-    <View>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={handleOnClick} style={styles.homeButton}>
+    <View style={styles.container}>
+      <View style={styles.homeIconContainer}>
+        <TouchableOpacity onPress={handleOnClick}>
           <Image
             source={require('./assets/home-icon.svg')}
             style={styles.homeIcon}
           />
         </TouchableOpacity>
+      </View>
+      <View style={styles.children}>
         {children}
       </View>
     </View>
@@ -37,18 +39,23 @@ const HomeHeader = ({ children }: any) => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    flex: 1,
     alignItems: 'center',
-    height: '65px'
+    justifyContent: 'center',
+  },
+  homeIconContainer: {
+    flex: 2,
   },
   homeIcon: {
-    height: 14,
-    width: 14,
+    height: 15,
+    width: 15,
   },
-  homeButton: {
-    position: 'absolute',
-    left: 35,
+  children: {
+    flex: 7,
+    transform: [{ translateX: '-10%' }]
   }
+
 })
 
 export default HomeHeader;

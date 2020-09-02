@@ -10,7 +10,7 @@ import Challenge from './modules/challenge';
 import JobDescription from './modules/job-description';
 import Dashboard from './modules/dashboard';
 import Congratulation from './components/congratulation';
-import MissionIntro from './modules/dashboard/modules/mission-intro';
+import MissionIntro from './modules/mission-intro';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='challenges' headerMode="none">
+        <Stack.Navigator initialRouteName='jobdescription' headerMode="none">
           <Stack.Screen
             name='challenges'
             component={ChallengesList}

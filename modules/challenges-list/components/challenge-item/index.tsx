@@ -36,12 +36,13 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     paddingHorizontal: 15,
     borderColor: 'rgba(0,0,0, 0.5)',
+    borderRadius: 12,
     borderWidth: 1,
     marginBottom: 10,
     display: "flex",
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 })
 

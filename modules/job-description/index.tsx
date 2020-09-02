@@ -2,7 +2,7 @@
 // modules
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 
 // components
 import { JobDescriptionContextProvider } from './components/context/JobDescriptionContextProvider';
@@ -13,6 +13,7 @@ import NavigationFooter from './components/navigation-footer';
 import HomeHeader from '../../components/home-header';
 import WishList from './modules/wish-list';
 import Stepper from './components/stepper'
+import PageContainer from '../../components/page-container';
 
 const JobDescription = () => {
 
@@ -21,15 +22,17 @@ const JobDescription = () => {
 
   return (
     <JobDescriptionContextProvider>
-      <HomeHeader>
-        <Stepper />
-      </HomeHeader>
-      <Stack.Navigator headerMode='none'>
-        <Stack.Screen name='JobTitle' component={JobTitle} />
-        <Stack.Screen name='CompanyTypes' component={CompanyTypes} />
-        <Stack.Screen name='WishList' component={WishList} />
-      </Stack.Navigator>
-      <NavigationFooter />
+      <PageContainer>
+        <HomeHeader>
+          <Stepper />
+        </HomeHeader>
+        <Stack.Navigator headerMode='none' initialRouteName='JobTitle'>
+          <Stack.Screen name='JobTitle' component={JobTitle} />
+          <Stack.Screen name='CompanyTypes' component={CompanyTypes} />
+          <Stack.Screen name='WishList' component={WishList} />
+        </Stack.Navigator>
+        <NavigationFooter />
+      </PageContainer>
     </JobDescriptionContextProvider >
   )
 }

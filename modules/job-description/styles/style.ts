@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     pageContainer: {
-        height: '100%',
         display: 'flex',
         flexDirection: 'column',
-
+        height: 'fit-content',
+        width: 'fit-content'
     },
     title: {
         marginBottom: 20,

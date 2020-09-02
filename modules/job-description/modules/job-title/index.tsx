@@ -22,7 +22,7 @@ const JobTitle = () => {
   }
 
   return (
-    <View style={styles.pageContainer}>
+    <>
       <PageTitle text={'JOBS KEY WORDS'} />
       <View style={styles.title}>
         <Text style={styles.titleText}>Type a list of jobs you are looking for :</Text>
@@ -30,7 +30,7 @@ const JobTitle = () => {
       <View style={styles.inputContainer}>
         <AutoFocusTextInput onChangeText={handleOnChange} autoFocus={true} multiline={true} numberOfLines={20} style={{ outline: 'none', fontSize: 20 }} placeholder='Type here ;)))))' />
       </View>
-    </View>
+    </>
   )
 }
 
