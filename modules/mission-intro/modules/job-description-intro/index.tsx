@@ -1,16 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import PageTitle from '../../../../components/page-title';
-import HomeHeader from '../../../../components/home-header';
-import PageContainer from '../../../../components/page-container';
 
 const JobDescriptionIntro = () => {
 
   return (
     <>
-      <HomeHeader>
-        <PageTitle text='Intro' />
-      </HomeHeader>
       <View style={styles.paragraphContainer}>
         <View style={styles.paragraph}>
           <Text>
@@ -40,13 +34,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   paragraph: {
-    marginVertical: 20,
+    marginBottom: 20,
     textAlign: 'center',
     fontSize: 16,
     lineHeight: 24,
   },
   paragraphContainer: {
-    marginBottom: 30
+    marginBottom: 20
   }
 })
 

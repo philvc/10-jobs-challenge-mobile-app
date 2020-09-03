@@ -20,7 +20,6 @@ const CompanyTypes = () => {
 
   return (
     <View style={styles.pageContainer}>
-      <PageTitle text={'WORK ENVIRONMENT'} />
       <View style={styles.title}>
         <Text style={styles.titleText}>Type the work environment you would like to work for !</Text>
       </View>

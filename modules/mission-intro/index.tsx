@@ -5,6 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 // components
 import JobDescriptionIntro from './modules/job-description-intro';
 import PageContainer from '../../components/page-container';
+import HomeHeader from '../../components/home-header';
+import PageTitle from '../../components/page-title';
+import PageBody from '../../components/page-body';
 
 const MissionIntro = ({ type = 'jobdescription' }: any) => {
 
@@ -24,7 +27,10 @@ const MissionIntro = ({ type = 'jobdescription' }: any) => {
   }
   return (
     <PageContainer>
-      <View style={{ height: '100%' }}>
+      <HomeHeader icon='dashboard'>
+        <PageTitle text='Intro' />
+      </HomeHeader>
+      <PageBody>
         <View>
           {renderIntro()}
         </View>
@@ -33,7 +39,7 @@ const MissionIntro = ({ type = 'jobdescription' }: any) => {
             <Text>Start</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </PageBody>
     </PageContainer>
   )
 }

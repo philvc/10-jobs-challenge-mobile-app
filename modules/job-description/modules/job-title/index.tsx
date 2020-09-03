@@ -10,6 +10,7 @@ import AutoFocusTextInput from '../../../../components/auto-focus-text-input';
 import { useJobDescriptionContext } from '../../components/context/JobDescriptionContext';
 import { actions } from '../../components/context/reducer';
 import PageTitle from '../../../../components/page-title';
+import MissionHeader from '../../components/header';
 
 const JobTitle = () => {
 
@@ -23,12 +24,14 @@ const JobTitle = () => {
 
   return (
     <>
-      <PageTitle text={'JOBS KEY WORDS'} />
-      <View style={styles.title}>
-        <Text style={styles.titleText}>Type a list of jobs you are looking for :</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <AutoFocusTextInput onChangeText={handleOnChange} autoFocus={true} multiline={true} numberOfLines={20} style={{ outline: 'none', fontSize: 20 }} placeholder='Type here ;)))))' />
+      <MissionHeader pageName='Job key words' />
+      <View style={{ flex: 8 }}>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>Insert job title key words you are looking for :</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <AutoFocusTextInput onChangeText={handleOnChange} autoFocus={true} multiline={true} numberOfLines={20} style={{ outline: 'none', fontSize: 20 }} placeholder='Type here ;)))))' />
+        </View>
       </View>
     </>
   )

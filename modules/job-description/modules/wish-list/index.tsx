@@ -20,7 +20,6 @@ const WishList = () => {
 
   return (
     <View style={styles.pageContainer}>
-      <PageTitle text={'WISHLIST'} />
       <View style={styles.title}>
         <Text style={styles.titleText}>Do you already know some companies you would like to work for ?</Text>
       </View>

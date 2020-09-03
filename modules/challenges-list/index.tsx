@@ -10,6 +10,9 @@ import NewChallengeForm from './components/newChallengeForm';
 // queries
 import { GET_PLAYER_CLIENT } from '../../graphql/queries/client/getPlayerClient';
 import { GET_GAMES_CLIENT } from '../../graphql/queries/client/getGamesClient';
+import PageContainer from '../../components/page-container';
+import PageTitle from '../../components/page-title';
+import PageBody from '../../components/page-body';
 
 const ChallengesList = () => {
 
@@ -39,42 +42,19 @@ const ChallengesList = () => {
   console.log(isModalVisible)
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Your 10 Jobs Challenges</Text>
-      <View style={styles.listContainer}>
+    <PageContainer>
+      <View style={{ flex: 0.5 }}>
+        <PageTitle text='Your 10 Jobs Challenges' />
+      </View>
+      <PageBody>
         <ChallengeItem challenge={{ title: "Challenge 1" }} />
         <ChallengeItem challenge={{ title: "Challenge 2" }} />
         <ChallengeItem challenge={{ title: "Challenge 3" }} />
         <ChallengeItem challenge={{ title: "Challenge 4" }} />
-      </View>
-      {/* <VirtualizedList
-        style={styles.challengesList}
-        data={gamesList}
-        renderItem={({ item }) => <ChallengeItem challenge={item} />}
-        keyExtractor={(item: any) => item.id}
-        getItemCount={(data: any) => data.length}
-      />
-      <View>
-        <View style={styles.newChallengeButton}>
-          <TouchableOpacity onPress={handleNewChallenge}>
-            <Text style={styles.newChallengeText}>New Challenge</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.modalView}>
-        <Modal
-          visible={false}
-          animationType="slide"
-          transparent={true}
-          presentationStyle="fullScreen"
-        >
-          <NewChallengeForm />
-        </Modal>
-      </View> */}
-    </View>
+      </PageBody>
+    </PageContainer>
   )
 }
-
 const styles = StyleSheet.create({
   listContainer: {
     padding: 15,
@@ -113,5 +93,30 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   }
 })
+{/* <VirtualizedList
+  style={styles.challengesList}
+  data={gamesList}
+  renderItem={({ item }) => <ChallengeItem challenge={item} />}
+  keyExtractor={(item: any) => item.id}
+  getItemCount={(data: any) => data.length}
+/>
+<View>
+  <View style={styles.newChallengeButton}>
+    <TouchableOpacity onPress={handleNewChallenge}>
+      <Text style={styles.newChallengeText}>New Challenge</Text>
+    </TouchableOpacity>
+  </View>
+</View>
+<View style={styles.modalView}>
+  <Modal
+    visible={false}
+    animationType="slide"
+    transparent={true}
+    presentationStyle="fullScreen"
+  >
+    <NewChallengeForm />
+  </Modal>
+</View> */}
+
 
 export default ChallengesList;

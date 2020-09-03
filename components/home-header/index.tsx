@@ -4,10 +4,14 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 // context
 import { useJobDescriptionContext } from '../../modules/job-description/components/context/JobDescriptionContext';
 import { useNavigation } from '@react-navigation/native';
+import NavigationIcon from '../navigation-icon';
 
+interface Props {
+  children?: any,
+  icon: string,
+}
 
-
-const HomeHeader = ({ children }: any) => {
+const HomeHeader = ({ children, icon }: Props) => {
 
 
   // Attritubes
@@ -15,19 +19,13 @@ const HomeHeader = ({ children }: any) => {
 
   // Handlers
   function handleOnClick() {
-    console.log('onclick')
-    navigation.navigate('dashboard')
+    navigation.navigate(icon)
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.homeIconContainer}>
-        <TouchableOpacity onPress={handleOnClick}>
-          <Image
-            source={require('./assets/home-icon.svg')}
-            style={styles.homeIcon}
-          />
-        </TouchableOpacity>
+        <NavigationIcon icon={icon} />
       </View>
       <View style={styles.children}>
         {children}
@@ -40,16 +38,12 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    flex: 1,
+    flex: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   homeIconContainer: {
     flex: 2,
-  },
-  homeIcon: {
-    height: 15,
-    width: 15,
   },
   children: {
     flex: 7,

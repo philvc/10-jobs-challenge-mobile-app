@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     padding: 15,
-    margin: 20,
     position: 'relative',
   },
   dashboardItemIcon: {

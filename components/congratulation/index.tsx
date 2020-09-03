@@ -6,7 +6,7 @@ import HomeHeader from '../home-header';
 const Congratulation = () => {
   return (
     <>
-      <HomeHeader />
+      <HomeHeader icon='dashboard' />
       <View style={styles.container}>
         <Text style={styles.text}>
           Congratulations !
