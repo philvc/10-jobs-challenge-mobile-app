@@ -8,21 +8,29 @@ import PageContainer from '../../components/page-container';
 import HomeHeader from '../../components/home-header';
 import PageTitle from '../../components/page-title';
 import PageBody from '../../components/page-body';
+import ThreeJobOffersIntro from './modules/3-job-offers-intro';
 
-const MissionIntro = ({ type = 'jobdescription' }: any) => {
+interface Props {
+  type: string,
+  next: string
+}
+
+const MissionIntro = ({ type, next }: Props) => {
 
   // Attributes
   const navigation = useNavigation()
 
   // Handlers
   function handleOnPress() {
-    navigation.navigate(type)
+    navigation.navigate(type, { screen: next })
   }
 
   function renderIntro() {
     switch (type) {
       case 'jobdescription':
-        return <JobDescriptionIntro />
+        return <JobDescriptionIntro />;
+      case 'threejoboffers':
+        return <ThreeJobOffersIntro />;
     }
   }
   return (

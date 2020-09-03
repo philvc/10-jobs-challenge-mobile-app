@@ -22,8 +22,8 @@ const Dashboard = () => {
       </HomeHeader>
       <PageBody>
         <View style={styles.dashboardBodyContainer}>
-          <MissionCard mission={{ type: 'jobdescription', isLock: false }} />
-          <MissionCard mission={{ type: '3jobs', isLock: true }} />
+          <MissionCard mission={{ name: 'Describe your future job', isLock: false }} />
+          <MissionCard mission={{ name: 'Post 3 job offers', isLock: true }} />
         </View>
       </PageBody>
     </PageContainer>

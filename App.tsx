@@ -11,6 +11,7 @@ import JobDescription from './modules/job-description';
 import Dashboard from './modules/dashboard';
 import Congratulation from './components/congratulation';
 import MissionIntro from './modules/mission-intro';
+import ThreeJobOffers from './modules/three-job-offers';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -24,7 +25,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='jobdescription' headerMode="none">
+        <Stack.Navigator initialRouteName='dashboard' headerMode="none">
           <Stack.Screen
             name='challenges'
             component={ChallengesList}
@@ -35,7 +36,7 @@ export default function App() {
           <Stack.Screen name='challenge' component={Challenge} />
           <Stack.Screen name='jobdescription' component={JobDescription} />
           <Stack.Screen name='congratulation' component={Congratulation} />
-          <Stack.Screen name='missionintro' component={MissionIntro} />
+          <Stack.Screen name='threejoboffers' component={ThreeJobOffers} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

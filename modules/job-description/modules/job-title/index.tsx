@@ -11,6 +11,7 @@ import { useJobDescriptionContext } from '../../components/context/JobDescriptio
 import { actions } from '../../components/context/reducer';
 import PageTitle from '../../../../components/page-title';
 import MissionHeader from '../../components/header';
+import NavigationFooter from '../../components/navigation-footer';
 
 const JobTitle = () => {
 
@@ -33,6 +34,7 @@ const JobTitle = () => {
           <AutoFocusTextInput onChangeText={handleOnChange} autoFocus={true} multiline={true} numberOfLines={20} style={{ outline: 'none', fontSize: 20 }} placeholder='Type here ;)))))' />
         </View>
       </View>
+      <NavigationFooter />
     </>
   )
 }

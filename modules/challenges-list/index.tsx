@@ -13,6 +13,7 @@ import { GET_GAMES_CLIENT } from '../../graphql/queries/client/getGamesClient';
 import PageContainer from '../../components/page-container';
 import PageTitle from '../../components/page-title';
 import PageBody from '../../components/page-body';
+import StartChallengeButton from './components/start-challenge';
 
 const ChallengesList = () => {
 
@@ -47,6 +48,7 @@ const ChallengesList = () => {
         <PageTitle text='Your 10 Jobs Challenges' />
       </View>
       <PageBody>
+        <StartChallengeButton />
         <ChallengeItem challenge={{ title: "Challenge 1" }} />
         <ChallengeItem challenge={{ title: "Challenge 2" }} />
         <ChallengeItem challenge={{ title: "Challenge 3" }} />

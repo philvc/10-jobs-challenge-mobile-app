@@ -1,24 +1,24 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const JobDescriptionIntro = () => {
+const ThreeJobOffersIntro = () => {
 
   return (
     <>
       <View style={styles.paragraphContainer}>
         <View style={styles.paragraph}>
           <Text>
-            You are about to start the 'Job Description' mission. The goal of this mission is to describe your new wanted job.
+            Post 3 new job offers to apply to !
         </Text>
         </View>
         <View style={styles.paragraph}>
           <Text>
-            You have to describe the job search key words you are looking for, the work environment and the companies you would like to apply to if you already have something in your mind.
+            Step 1: Together, you have to fill the table with 3 new job offers.
         </Text>
         </View>
         <View style={styles.paragraph}>
           <Text>
-            It will help your friends who joined this 10 jobs challenge to find you better job offers.
+            Final step: The job seeker has to validate the results.
         </Text>
         </View>
       </View>
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   paragraphContainer: {
-    marginBottom: 20,
+    marginBottom: 20
   }
 })
 
-export default JobDescriptionIntro
+export default ThreeJobOffersIntro;

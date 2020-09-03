@@ -10,19 +10,22 @@ const MissionCard = ({ mission }: any) => {
 
   // Handlers
   function handleOnPress() {
-    navigation.navigate('missionintro')
+    const routeName = getMissionRoute()
+    navigation.navigate(routeName)
   }
 
   // utils
-  function getMissionName() {
-    switch (mission.type) {
-      case 'jobdescription':
-        return missionNameEnum[0]
-      case '3jobs':
-        return missionNameEnum[1]
+  function getMissionRoute() {
+    switch (mission.name) {
+      case 'Describe your future job':
+        return 'jobdescription'
+      case 'Post 3 job offers':
+        return 'threejoboffers';
+      default:
+        return 'dashboard'
     }
   }
-  const missionNameEnum = ['Mission 1', 'Mission 2']
+
 
 
 
@@ -31,7 +34,7 @@ const MissionCard = ({ mission }: any) => {
     <View style={styles.dashboardItem}>
       <Image style={styles.dashboardItemIcon} source={require(`../../assets/lock${mission.isLock ? '' : '-unlock'}.svg`)} />
       <TouchableOpacity onPress={() => handleOnPress()}>
-        <Text style={styles.dashboardItemText}>{getMissionName()}</Text>
+        <Text style={styles.dashboardItemText}>{mission.name}</Text>
       </TouchableOpacity>
     </View>
   )
