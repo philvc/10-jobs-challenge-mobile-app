@@ -36,7 +36,7 @@ const MissionIntro = ({ type = 'jobdescription' }: any) => {
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleOnPress}>
-            <Text>Start</Text>
+            <Text style={{ color: 'white' }}>Start</Text>
           </TouchableOpacity>
         </View>
       </PageBody>
