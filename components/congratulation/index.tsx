@@ -2,17 +2,23 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import HomeHeader from '../home-header';
+import PageContainer from '../page-container';
+import PageBody from '../page-body';
 
 const Congratulation = () => {
   return (
     <>
-      <HomeHeader icon='dashboard' />
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          Congratulations !
-          💪
+      <PageContainer>
+        <HomeHeader icon='dashboard' />
+        <PageBody>
+          <View style={styles.container}>
+            <Text style={styles.text}>
+              Congratulations !
+              💪
       </Text>
-      </View>
+          </View>
+        </PageBody>
+      </PageContainer>
     </>
   )
 }

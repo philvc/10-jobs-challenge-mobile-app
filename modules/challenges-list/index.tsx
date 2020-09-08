@@ -40,7 +40,9 @@ const ChallengesList = () => {
     setIsModalVisible(true)
   }
 
-  console.log(isModalVisible)
+  function handleAddButton() {
+
+  }
 
   return (
     <PageContainer>
@@ -48,7 +50,12 @@ const ChallengesList = () => {
         <PageTitle text='Your 10 Jobs Challenges' />
       </View>
       <PageBody>
-        <StartChallengeButton />
+        <View style={styles.addButton}>
+          <TouchableOpacity onPress={handleAddButton}>
+            <Text style={styles.addButtonText}>+</Text>
+          </TouchableOpacity>
+        </View>
+        {/* <StartChallengeButton /> */}
         <ChallengeItem challenge={{ title: "Challenge 1" }} />
         <ChallengeItem challenge={{ title: "Challenge 2" }} />
         <ChallengeItem challenge={{ title: "Challenge 3" }} />
@@ -93,6 +100,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 0,
+  },
+  addButton: {
+    padding: 15,
+    borderRadius: 12,
+    backgroundColor: 'rgba(0,0,0, 0.5)',
+    boxSizing: 'border-box',
+    marginBottom: 10
+  },
+  addButtonText: {
+    fontStyle: 'normal',
+    fontSize: 16,
+    lineHeight: 10,
+    textAlign: 'center',
+    color: 'white',
   }
 })
 {/* <VirtualizedList

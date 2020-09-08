@@ -8,7 +8,7 @@ import MissionIntro from '../mission-intro';
 import Table from './modules/table';
 
 const ThreeJobOffers = () => {
-  console.log('threjobs')
+
   // Attributes
   const Stack = createStackNavigator()
 
