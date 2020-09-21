@@ -14,6 +14,7 @@ import MissionIntro from './modules/mission-intro';
 import ThreeJobOffers from './modules/three-job-offers';
 import { GET_GAMES_CLIENT_MOBILE } from './graphql/queries/client/getGamesClient';
 import NewChallenge from './modules/new-challenge';
+import Join from './modules/join';
 
 
 const client = new ApolloClient({
@@ -32,11 +33,11 @@ client.writeQuery({
 const Stack = createStackNavigator()
 
 export default function App() {
-
+  // TODO react router navigation
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='dashboard' headerMode="none">
+        <Stack.Navigator initialRouteName='join' headerMode="none">
           <Stack.Screen
             name='challenges'
             component={ChallengesList}
@@ -49,6 +50,7 @@ export default function App() {
           <Stack.Screen name='jobdescription' component={JobDescription} />
           <Stack.Screen name='congratulation' component={Congratulation} />
           <Stack.Screen name='threejoboffers' component={ThreeJobOffers} />
+          <Stack.Screen name='join' component={Join} />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

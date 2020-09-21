@@ -19,7 +19,7 @@ const Dashboard = () => {
     tryShare(
       'Join and help me on my job quest',
       'Je fais appel à toi pour chercher un nouveau taf',
-      `http://localhost:19006/${challenge.id}`
+      `http://localhost:19006/join/${challenge.id}`
     )
   }
 
