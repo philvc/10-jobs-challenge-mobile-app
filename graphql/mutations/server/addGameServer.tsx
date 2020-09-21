@@ -21,3 +21,16 @@ export const ADDGAME_SERVER = gql`
     }
   }
 `
+
+export const ADDMOBILEGAME_SERVER = gql`
+  mutation addMobileGame($title: String, $players: [PlayersMobileInput]){
+    addGameMobile(input: {title: $title, players: $players}){
+      id
+      title
+      players {
+        name
+        isApplicant
+      }
+    }
+  }
+`

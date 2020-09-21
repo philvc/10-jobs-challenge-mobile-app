@@ -1,7 +1,7 @@
 // modules
 import React from 'react';
 import { View, Text, VirtualizedList, StyleSheet, TouchableOpacity, Modal } from 'react-native';
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 
 // components
 import ChallengeItem from './components/challenge-item';
@@ -14,11 +14,13 @@ import PageContainer from '../../components/page-container';
 import PageTitle from '../../components/page-title';
 import PageBody from '../../components/page-body';
 import StartChallengeButton from './components/start-challenge';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 const ChallengesList = () => {
 
   // storage
   const challenges = localStorage.getItem('challenges') || []
+  const navigation = useNavigation()
 
   // // client
   // const client = useApolloClient()
@@ -34,13 +36,11 @@ const ChallengesList = () => {
   const [gamesList, setGamesList] = React.useState(challenges)
   const [isModalVisible, setIsModalVisible] = React.useState(false)
 
-  // handlers
-  function handleNewChallenge() {
-    console.log('isModalVisible', isModalVisible)
-    setIsModalVisible(true)
-  }
 
   function handleAddButton() {
+
+    navigation.navigate('newchallenge')
+
 
   }
 
@@ -140,6 +140,5 @@ const styles = StyleSheet.create({
     <NewChallengeForm />
   </Modal>
 </View> */}
-
 
 export default ChallengesList;
