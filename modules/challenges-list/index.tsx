@@ -9,39 +9,46 @@ import NewChallengeForm from './components/newChallengeForm';
 
 // queries
 import { GET_PLAYER_CLIENT } from '../../graphql/queries/client/getPlayerClient';
-import { GET_GAMES_CLIENT } from '../../graphql/queries/client/getGamesClient';
+import { GET_GAMES_CLIENT_MOBILE } from '../../graphql/queries/client/getGamesClient';
 import PageContainer from '../../components/page-container';
 import PageTitle from '../../components/page-title';
 import PageBody from '../../components/page-body';
 import StartChallengeButton from './components/start-challenge';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const ChallengesList = () => {
 
-  // storage
-  const challenges = localStorage.getItem('challenges') || []
   const navigation = useNavigation()
 
-  // // client
-  // const client = useApolloClient()
+  // client
+  const client = useApolloClient()
   // const { player }: any = client.readQuery({ query: GET_PLAYER_CLIENT })
-  // const { games }: any = client.readQuery({
-  //   query: GET_GAMES_CLIENT,
-  //   variables: {
-  //     playerId: player.id
-  //   }
-  // })
+  const { gamesMobile }: any = client.readQuery({
+    query: GET_GAMES_CLIENT_MOBILE,
+  })
+
+  console.log('challenges list', gamesMobile)
 
   // state
-  const [gamesList, setGamesList] = React.useState(challenges)
+  const [gamesList, setGamesList] = React.useState(gamesMobile)
   const [isModalVisible, setIsModalVisible] = React.useState(false)
 
+  // effetct
+  useFocusEffect(
+    React.useCallback(() => {
 
+      const { gamesMobile }: any = client.readQuery({
+        query: GET_GAMES_CLIENT_MOBILE,
+      })
+
+      setGamesList(gamesMobile)
+
+    }, [])
+  )
+
+  // handlers
   function handleAddButton() {
-
     navigation.navigate('newchallenge')
-
-
   }
 
   return (
@@ -56,10 +63,7 @@ const ChallengesList = () => {
           </TouchableOpacity>
         </View>
         {/* <StartChallengeButton /> */}
-        <ChallengeItem challenge={{ title: "Challenge 1" }} />
-        <ChallengeItem challenge={{ title: "Challenge 2" }} />
-        <ChallengeItem challenge={{ title: "Challenge 3" }} />
-        <ChallengeItem challenge={{ title: "Challenge 4" }} />
+        {gamesList.length > 0 && gamesList.map((game: any) => <ChallengeItem key={game.id} challenge={game} />)}
       </PageBody>
     </PageContainer>
   )

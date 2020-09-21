@@ -9,7 +9,7 @@ import AutoFocusTextInput from '../../components/auto-focus-text-input';
 import PageTitle from '../../components/page-title';
 import ParticipantInput from './components/participant-input';
 import { useNavigation } from '@react-navigation/native';
-import { GET_GAMES_CLIENT } from '../../graphql/queries/client/getGamesClient';
+import { GET_GAMES_CLIENT_MOBILE } from '../../graphql/queries/client/getGamesClient';
 
 
 
@@ -29,30 +29,20 @@ const NewChallenge = () => {
   // queries 
   const [addGameMutation]: any = useMutation(ADDMOBILEGAME_SERVER, {
     onCompleted({ addGameMobile }) {
-      console.log('addMobileGame', addGameMobile)
 
       // update cache
-      const games = client.readQuery({ query: GET_GAMES_CLIENT })
+      const { gamesMobile }: any = client.readQuery({ query: GET_GAMES_CLIENT_MOBILE })
 
-      let newGames = []
-
-      if (!games) {
-        newGames.push(addGameMobile)
-      } else {
-        newGames = games.push(addGameMobile)
-      }
-
-
+      const newGames = gamesMobile.concat([addGameMobile])
       client.writeQuery({
-        query: GET_GAMES_CLIENT,
+        query: GET_GAMES_CLIENT_MOBILE,
         data: {
-          games: newGames
+          gamesMobile: newGames
         }
       })
 
       // save local storage
       localStorage.setItem('games', JSON.stringify(newGames))
-      console.log('games', JSON.parse(localStorage.getItem('games') || '[]'))
       navigate('challenges')
     }
   });

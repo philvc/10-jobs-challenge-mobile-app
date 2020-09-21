@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const ChallengeItem = ({ challenge }: any) => {
-
   // navigation 
   const navigation = useNavigation()
 

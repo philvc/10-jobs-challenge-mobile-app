@@ -9,7 +9,6 @@ const ParticipantInput = (props: IProps) => {
 
   const ref = useRef<TextInput>(null)
 
-  console.log('isFocused', props.isFocused)
 
   useEffect(() => {
     if (props.isFocused && ref.current) {

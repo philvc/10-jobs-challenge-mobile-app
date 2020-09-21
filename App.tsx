@@ -12,7 +12,7 @@ import Dashboard from './modules/dashboard';
 import Congratulation from './components/congratulation';
 import MissionIntro from './modules/mission-intro';
 import ThreeJobOffers from './modules/three-job-offers';
-import { GET_GAMES_CLIENT } from './graphql/queries/client/getGamesClient';
+import { GET_GAMES_CLIENT_MOBILE } from './graphql/queries/client/getGamesClient';
 import NewChallenge from './modules/new-challenge';
 
 
@@ -21,14 +21,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-if (localStorage.hasOwnProperty('games')) {
-  client.writeQuery({
-    query: GET_GAMES_CLIENT,
-    data: {
-      games: JSON.parse(localStorage.getItem('games') || '[]'),
-    }
-  })
-}
+client.writeQuery({
+  query: GET_GAMES_CLIENT_MOBILE,
+  data: {
+    gamesMobile: JSON.parse(localStorage.getItem('games') || '[]'),
+  }
+})
+
 
 const Stack = createStackNavigator()
 

@@ -29,7 +29,6 @@ const NavigationFooter = () => {
       navigation.navigate('congratulation')
     }
   })
-  console.log('step in nav footer', step)
   // Handlers
   function handleOnPress(value: number) {
 

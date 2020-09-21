@@ -14,7 +14,6 @@ const NewChallengeForm = () => {
     display({ type, payload })
   }
 
-  console.log('state', state)
 
   return (
     <View style={styles.container}>

@@ -21,3 +21,14 @@ export const GAME_DATA_FRAGMENT = gql`
   }
   ${PLAYER_DATA_FRAGMENT}
 `
+
+export const GAME_DATA_FRAGMENT_MOBILE = gql`
+  fragment GameDataMobile on GameMobile {
+    id
+    title
+    players {
+      isApplicant
+      name
+    }
+  }
+`
