@@ -1,27 +1,61 @@
 // modules
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import React, { useReducer, useState, useRef } from 'react';
-import { useMutation } from '@apollo/client';
+import React, { useReducer, useState, useRef, useEffect } from 'react';
+import { useMutation, useApolloClient } from '@apollo/client';
 
 // graphql
 import { ADDMOBILEGAME_SERVER } from '../../graphql/mutations/server/addGameServer';
 import AutoFocusTextInput from '../../components/auto-focus-text-input';
 import PageTitle from '../../components/page-title';
 import ParticipantInput from './components/participant-input';
+import { useNavigation } from '@react-navigation/native';
+import { GET_GAMES_CLIENT } from '../../graphql/queries/client/getGamesClient';
 
 
 
 const NewChallenge = () => {
-  // TODO  changer participant en objet
+
+  // Attributes
   const [title, setTitle] = useState('')
-  const [challengeOwner, setChallengeOwner] = useState('')
-  const [participants, setParticipants] = useState([''])
+  const [participants, setParticipants] = useState<any>([{ isApplicant: true, name: '' }, { isApplicant: false, name: '' }])
   const [inputFocused, setInputFocused] = useState<null | number>(null)
+  const { navigate } = useNavigation()
+
+  // client
+  const client = useApolloClient()
+
 
 
   // queries 
-  const [addGameMutation]: any = useMutation(ADDMOBILEGAME_SERVER)
+  const [addGameMutation]: any = useMutation(ADDMOBILEGAME_SERVER, {
+    onCompleted({ addGameMobile }) {
+      console.log('addMobileGame', addGameMobile)
 
+      // update cache
+      const games = client.readQuery({ query: GET_GAMES_CLIENT })
+
+      let newGames = []
+
+      if (!games) {
+        newGames.push(addGameMobile)
+      } else {
+        newGames = games.push(addGameMobile)
+      }
+
+
+      client.writeQuery({
+        query: GET_GAMES_CLIENT,
+        data: {
+          games: newGames
+        }
+      })
+
+      // save local storage
+      localStorage.setItem('games', JSON.stringify(newGames))
+      console.log('games', JSON.parse(localStorage.getItem('games') || '[]'))
+      navigate('challenges')
+    }
+  });
 
   // handlers
   function handleOnClick() {
@@ -34,17 +68,19 @@ const NewChallenge = () => {
   }
 
   function handleAddParticipant() {
-    setParticipants(prevValue => {
-      return [...prevValue, '']
+    let lastIndex = participants.length
+    setParticipants((prevValue: any) => {
+      return [...prevValue, { isApplicant: false, name: '' }]
     })
+    handleFocus(lastIndex)
   }
 
   function handleChangeName(text: string, id: number) {
-    console.log('text', text)
-    setParticipants(prevValue => {
-      return prevValue.map((el, index) => {
+
+    setParticipants((prevValue: any) => {
+      return prevValue.map((el: any, index: number) => {
         if (index === id) {
-          return text
+          return { ...el, name: text }
         }
         return el
       })
@@ -55,7 +91,7 @@ const NewChallenge = () => {
     setInputFocused(index)
   }
 
-  console.log('participants', participants)
+
   return (
     <View style={styles.newChallengeContainer}>
       <View style={{ flex: 0.5 }}>
@@ -85,12 +121,12 @@ const NewChallenge = () => {
                 return (
                   <View>
                     <Text>You</Text>
-                    <ParticipantInput placeholder='your name...' isFocused={index === inputFocused} onFocus={() => handleFocus(index)} key={`${el}-${index}`} value={participants[index]} onChangeText={(text) => handleChangeName(text, index)} style={styles.inputField} />
+                    <ParticipantInput placeholder='your name...' isFocused={index === inputFocused} onFocus={() => handleFocus(index)} key={`${el}-${index}`} value={participants[index].name} onChangeText={(text) => handleChangeName(text, index)} style={styles.inputField} />
                   </View>
                 )
               }
 
-              return <ParticipantInput isFocused={index === inputFocused} onFocus={() => handleFocus(index)} key={`${el}-${index}`} value={participants[index]} onChangeText={(text) => handleChangeName(text, index)} style={styles.inputField} placeholder='friend name...' />
+              return <ParticipantInput isFocused={index === inputFocused} onFocus={() => handleFocus(index)} key={`${el}-${index}`} value={participants[index].name} onChangeText={(text) => handleChangeName(text, index)} style={styles.inputField} placeholder='friend name...' />
             }
             )
 

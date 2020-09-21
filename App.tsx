@@ -21,7 +21,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-console.log(localStorage.getItem('games'))
 if (localStorage.hasOwnProperty('games')) {
   client.writeQuery({
     query: GET_GAMES_CLIENT,
@@ -38,7 +37,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='newchallenge' headerMode="none">
+        <Stack.Navigator initialRouteName='challenges' headerMode="none">
           <Stack.Screen
             name='challenges'
             component={ChallengesList}
