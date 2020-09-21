@@ -41,9 +41,13 @@ const NewChallenge = () => {
         }
       })
 
+      let me = addGameMobile.players.find((player: any) => player.isApplicant === true);
+
+      localStorage.setItem('selectedChallenge', JSON.stringify(addGameMobile))
+      localStorage.setItem(`${addGameMobile.id}Me`, JSON.stringify({ gameId: addGameMobile.id, me: me.name }))
       // save local storage
       localStorage.setItem('games', JSON.stringify(newGames))
-      navigate('challenges')
+      navigate('dashboard')
     }
   });
 

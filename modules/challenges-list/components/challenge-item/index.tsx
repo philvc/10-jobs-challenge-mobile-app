@@ -10,6 +10,7 @@ const ChallengeItem = ({ challenge }: any) => {
 
   // handlers
   function handleClick() {
+    localStorage.setItem('selectedChallenge', JSON.stringify(challenge))
     navigation.navigate('dashboard')
   }
 

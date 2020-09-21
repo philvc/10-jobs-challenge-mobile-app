@@ -36,7 +36,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='challenges' headerMode="none">
+        <Stack.Navigator initialRouteName='dashboard' headerMode="none">
           <Stack.Screen
             name='challenges'
             component={ChallengesList}
