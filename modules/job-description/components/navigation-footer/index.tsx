@@ -13,6 +13,7 @@ import { useMutation } from '@apollo/client';
 // graphql
 import { UPDATE_JOB_DESCRIPTION_SERVER } from '../../../../graphql/mutations/server/updateJobDescription'
 import JobDescription from '../..';
+import { CREATE_MISSION } from '../../../../graphql/mutations/server/createMissionServer';
 
 const NavigationFooter = () => {
 
@@ -24,16 +25,18 @@ const NavigationFooter = () => {
   const game = JSON.parse(localStorage.getItem('selectedChallenge') || '')
   const enumRoute = ['JobTitle', 'CompanyTypes', 'WishList', 'Congratulation']
 
-  // Queries
+  // Mutations
   const [updateJobDescription] = useMutation(UPDATE_JOB_DESCRIPTION_SERVER, {
     onCompleted() {
-
+      // TODO congratulation check your dashboard you have unlocked a new mission
       // if clicked on save go to congratulation page
       if (step === 3 && jobDescription.state === 'pending') {
         navigation.navigate('congratulation')
       }
     }
   })
+
+  const [createMission] = useMutation(CREATE_MISSION)
 
 
   // Handlers
@@ -62,6 +65,17 @@ const NavigationFooter = () => {
   }
 
   function handleSaveJobDescription() {
+
+    // unlock mission 3 job offers
+    if (jobDescription.state === 'pending') {
+      createMission({
+        variables: {
+          gameId: game.id,
+          type: 'joboffers',
+          quantity: 1
+        }
+      })
+    }
 
     // save mission
     updateJobDescription({
