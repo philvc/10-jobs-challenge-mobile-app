@@ -8,11 +8,20 @@ import PageContainer from '../../components/page-container';
 import PageBody from '../../components/page-body';
 import HomeHeader from '../../components/home-header';
 import { tryShare } from './utils';
+import { useQuery } from '@apollo/client';
+import { GET_MOBILE_MISSIONS } from '../../graphql/queries/client/getMobileMissions';
 
 const Dashboard = () => {
 
   // Attributes
   const challenge = JSON.parse(localStorage.getItem('selectedChallenge') || '')
+
+  // QUERY
+  const { loading, data, error } = useQuery(GET_MOBILE_MISSIONS, {
+    variables: {
+      gameId: '5f6aec9716c90440435d6e44'
+    }
+  })
 
 
   // Handlers
@@ -24,6 +33,10 @@ const Dashboard = () => {
     )
   }
 
+  if (loading) return null
+
+  const { missionsMobile } = data
+
   return (
     <PageContainer>
       <HomeHeader icon='challenges'>
@@ -31,8 +44,9 @@ const Dashboard = () => {
       </HomeHeader>
       <PageBody>
         <View style={styles.dashboardBodyContainer}>
-          <MissionCard mission={{ name: 'Describe your future job', isLock: false }} />
-          <MissionCard mission={{ name: 'Post 3 job offers', isLock: true }} />
+          {missionsMobile.map((mission: any) => {
+            return <MissionCard mission={mission} />
+          })}
         </View>
         <View style={styles.shareButton}>
           <TouchableOpacity onPress={handleShare}>
