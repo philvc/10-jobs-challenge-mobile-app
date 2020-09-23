@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
 
 // fragment
-import { JOB_DESCRIPTION_DATA_FRAGMENT } from '../../fragments/jobDescriptionFragment';
+import { MOBILE_MISSION_DATA_FRAGMENT } from '../../fragments/mobileMissionDataFragment';
 
 export const UPDATE_JOB_DESCRIPTION_SERVER = gql`
-  mutation updateJobDescription($id: String, $step:Int, $description:String, $environment:String, $wishList:String, $applicantId:String, $gameId: String){
-    updateJobDescription(input: {id: $id, step: $step, description:$description, gameId: $gameId, environment:$environment, wishList: $wishList, applicantId:$applicantId}){
-      ...JobDescription
+  mutation updateJobDescription($id: String,$description:String, $environment:String, $wishList:String, $gameId: String, $state: String){
+    updateJobDescription(input: {state: $state, id: $id, description:$description, gameId: $gameId, environment:$environment, wishList: $wishList}){
+      ...MobileMissionData
     }
   }
-  ${JOB_DESCRIPTION_DATA_FRAGMENT}
+  ${MOBILE_MISSION_DATA_FRAGMENT}
 `

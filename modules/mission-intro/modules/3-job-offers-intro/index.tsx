@@ -7,17 +7,17 @@ const ThreeJobOffersIntro = () => {
     <>
       <View style={styles.paragraphContainer}>
         <View style={styles.paragraph}>
-          <Text>
+          <Text style={styles.paragraphText}>
             Post 3 new job offers to apply to !
         </Text>
         </View>
         <View style={styles.paragraph}>
-          <Text>
+          <Text style={styles.paragraphText}>
             Step 1: Together, you have to fill the table with 3 new job offers.
         </Text>
         </View>
         <View style={styles.paragraph}>
-          <Text>
+          <Text style={styles.paragraphText}>
             Final step: The job seeker has to validate the results.
         </Text>
         </View>
@@ -35,9 +35,12 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     marginBottom: 20,
+  },
+  paragraphText: {
     textAlign: 'center',
     fontSize: 16,
     lineHeight: 24,
+
   },
   paragraphContainer: {
     marginBottom: 20

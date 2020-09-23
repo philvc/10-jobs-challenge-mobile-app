@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 
 export const MOBILE_MISSION_DATA_FRAGMENT = gql`
   fragment MobileMissionData on MissionMobile {
+    id
     type
     step
     state
@@ -9,5 +10,6 @@ export const MOBILE_MISSION_DATA_FRAGMENT = gql`
     environment
     wishList
     gameId
+    state
   }
 `

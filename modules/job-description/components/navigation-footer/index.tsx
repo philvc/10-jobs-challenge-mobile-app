@@ -1,5 +1,5 @@
 // modules
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 // components
@@ -12,50 +12,70 @@ import { useMutation } from '@apollo/client';
 
 // graphql
 import { UPDATE_JOB_DESCRIPTION_SERVER } from '../../../../graphql/mutations/server/updateJobDescription'
+import JobDescription from '../..';
 
 const NavigationFooter = () => {
 
   // Attributes
   const { data: jobDescription, dispatch } = useJobDescriptionContext()
   const { step } = jobDescription;
-  const navigation = useNavigation()
-
+  const { wishList, jobTitle, companyTypes } = jobDescription
+  const navigation = useNavigation();
+  const game = JSON.parse(localStorage.getItem('selectedChallenge') || '')
   const enumRoute = ['JobTitle', 'CompanyTypes', 'WishList', 'Congratulation']
 
   // Queries
   const [updateJobDescription] = useMutation(UPDATE_JOB_DESCRIPTION_SERVER, {
-    onCompleted({ jobDescription }) {
+    onCompleted() {
 
-      navigation.navigate('congratulation')
+      // if clicked on save go to congratulation page
+      if (step === 3 && jobDescription.state === 'pending') {
+        navigation.navigate('congratulation')
+      }
     }
   })
+
+
   // Handlers
   function handleOnPress(value: number) {
 
-    if (value >= 0 && value < 3) {
+    // save mission update
+    updateJobDescription({
+      variables: {
+        id: '5f6aec9716c90440435d6e45',
+        description: jobTitle,
+        wishList: wishList,
+        gameId: game.id,
+        environment: companyTypes,
+        state: 'completed',
+      }
+    })
 
+    // update step
+    if (value >= 0 && value < 3) {
       dispatch({ type: actions.stepChanged, payload: value })
     }
+
+    // navigate to next screen
     navigation.navigate('jobdescription', { screen: enumRoute[value] })
 
   }
 
   function handleSaveJobDescription() {
-    const { step, wishList, jobTitle, companyTypes } = jobDescription
 
-    const game = JSON.parse(localStorage.getItem('selectedChallenge') || '')
-    console.log('game', game)
-    const data = updateJobDescription({
+    // save mission
+    updateJobDescription({
       variables: {
-        id: '5f46c58f06f330b93b71349d',
+        id: '5f6aec9716c90440435d6e45',
         description: jobTitle,
         wishList: wishList,
-        step,
-        applicantId: "5e9582ecb1f1623b439af5ab",
-        gameId: game.id
+        gameId: game.id,
+        environment: companyTypes,
+        state: 'completed'
       }
     })
   }
+
 
   return (
     <View style={styles.container}>
@@ -67,15 +87,20 @@ const NavigationFooter = () => {
           <View></View>
         )
       }
-      {step === 2 ? (
+      {step !== 2 && (
+
+        <TouchableOpacity style={styles.navigationButton} onPress={() => handleOnPress(step + 1)}>
+          <Text>Next</Text>
+        </TouchableOpacity>
+      )
+      }
+      {step === 2 && companyTypes && jobTitle && wishList ? (
         <TouchableOpacity onPress={handleSaveJobDescription}>
           <Text style={styles.saveButtonText}>Save Mission</Text>
         </TouchableOpacity>
-      ) :
-        (
-          <TouchableOpacity style={styles.navigationButton} onPress={() => handleOnPress(step + 1)}>
-            <Text>Next</Text>
-          </TouchableOpacity>
+      )
+        : (
+          <View></View>
         )
       }
     </View>

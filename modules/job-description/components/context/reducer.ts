@@ -4,6 +4,7 @@ export const actions = {
     wishListChanged: 'wishListChanged',
     stepChanged: 'stepChanged',
     currentStepChanged: 'currentStepChanged',
+    stateChanged: 'stateChanged',
 }
 
 export interface initialStateInterface {
@@ -13,6 +14,7 @@ export interface initialStateInterface {
     wishList: string,
     maxStep: number,
     currentStep: number,
+    state: string
 }
 
 export const initialState: initialStateInterface = {
@@ -22,6 +24,7 @@ export const initialState: initialStateInterface = {
     step: 0,
     maxStep: 6,
     currentStep: 0,
+    state: '',
 }
 
 export function reducer(state: initialStateInterface, action: any) {
@@ -37,9 +40,10 @@ export function reducer(state: initialStateInterface, action: any) {
                 companyTypes: action.payload
             }
         case actions.wishListChanged:
+            console.log('sdfsq')
             return {
                 ...state,
-                companyTypes: action.payload
+                wishList: action.payload
             }
         case actions.stepChanged:
             return {
@@ -50,6 +54,12 @@ export function reducer(state: initialStateInterface, action: any) {
             return {
                 ...state,
                 currentStep: action.payload
+            }
+
+        case actions.stateChanged:
+            return {
+                ...state,
+                ...action.payload
             }
 
         default:

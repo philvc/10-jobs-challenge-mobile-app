@@ -17,7 +17,7 @@ const JobTitle = () => {
 
   // Attributes
   const { data, dispatch } = useJobDescriptionContext()
-
+  console.log('data context', data)
   // Handlers
   function handleOnChange(text: any) {
     dispatch({ type: actions.jobTitleChanged, payload: text })
@@ -31,7 +31,7 @@ const JobTitle = () => {
           <Text style={styles.titleText}>Insert job title key words you are looking for :</Text>
         </View>
         <View style={styles.inputContainer}>
-          <AutoFocusTextInput onChangeText={handleOnChange} autoFocus={true} multiline={true} numberOfLines={20} style={{ outline: 'none', fontSize: 20 }} placeholder='Type here ;)))))' />
+          <AutoFocusTextInput value={data.jobTitle} onChangeText={handleOnChange} autoFocus={true} multiline={true} numberOfLines={20} style={{ outline: 'none', fontSize: 20 }} placeholder='Type here ;)))))' />
         </View>
       </View>
       <NavigationFooter />

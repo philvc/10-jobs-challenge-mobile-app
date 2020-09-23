@@ -9,6 +9,8 @@ import HomeHeader from '../../components/home-header';
 import PageTitle from '../../components/page-title';
 import PageBody from '../../components/page-body';
 import ThreeJobOffersIntro from './modules/3-job-offers-intro';
+import { useMutation } from '@apollo/client';
+import { UPDATE_JOB_DESCRIPTION_SERVER } from '../../graphql/mutations/server/updateJobDescription';
 
 interface Props {
   type: string,
@@ -20,9 +22,25 @@ const MissionIntro = ({ type, next }: Props) => {
   // Attributes
   const navigation = useNavigation()
 
+  // Mutation
+  const [updateJobDescription] = useMutation(UPDATE_JOB_DESCRIPTION_SERVER, {
+    onCompleted() {
+      navigation.navigate(type, { screen: next })
+    }
+  })
+
   // Handlers
   function handleOnPress() {
-    navigation.navigate(type, { screen: next })
+    updateJobDescription({
+      variables: {
+        id: '5f6aec9716c90440435d6e45',
+        description: '',
+        wishList: '',
+        gameId: '',
+        environment: '',
+        state: 'pending',
+      }
+    })
   }
 
   function renderIntro() {
@@ -42,9 +60,9 @@ const MissionIntro = ({ type, next }: Props) => {
         <View>
           {renderIntro()}
         </View>
-        <View style={styles.buttonContainer}>
+        <View>
           <TouchableOpacity onPress={handleOnPress}>
-            <Text style={{ color: 'white' }}>Start</Text>
+            <Text style={styles.buttonContainer}>Start</Text>
           </TouchableOpacity>
         </View>
       </PageBody>
@@ -66,6 +84,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     width: 200,
     alignSelf: 'center',
+    white: 'white'
   },
   body: {
     display: 'flex',

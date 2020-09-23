@@ -9,7 +9,7 @@ import PageBody from '../../components/page-body';
 import HomeHeader from '../../components/home-header';
 import { tryShare } from './utils';
 import { useQuery } from '@apollo/client';
-import { GET_MOBILE_MISSIONS } from '../../graphql/queries/client/getMobileMissions';
+import { GET_MOBILE_MISSIONS } from '../../graphql/queries/server/getMobileMissions';
 
 const Dashboard = () => {
 
@@ -45,12 +45,12 @@ const Dashboard = () => {
       <PageBody>
         <View style={styles.dashboardBodyContainer}>
           {missionsMobile.map((mission: any) => {
-            return <MissionCard mission={mission} />
+            return <MissionCard key={mission.id} mission={mission} />
           })}
         </View>
-        <View style={styles.shareButton}>
+        <View>
           <TouchableOpacity onPress={handleShare}>
-            <Text>Share your quest</Text>
+            <Text style={styles.shareButton}>Share your quest</Text>
           </TouchableOpacity>
         </View>
       </PageBody>
