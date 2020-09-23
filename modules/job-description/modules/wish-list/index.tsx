@@ -9,6 +9,7 @@ import { actions } from '../../components/context/reducer';
 import PageTitle from '../../../../components/page-title';
 import MissionHeader from '../../components/header';
 import NavigationFooter from '../../components/navigation-footer';
+import SubHeader from '../../components/sub-header';
 
 const WishList = () => {
 
@@ -24,6 +25,7 @@ const WishList = () => {
   return (
     <>
       <MissionHeader pageName='Wishlist' />
+      {data.state === 'completed' && <SubHeader />}
       <View style={{ flex: 8 }}>
         <View style={styles.title}>
           <Text style={styles.titleText}>Do you already know some companies you would like to work for ?</Text>

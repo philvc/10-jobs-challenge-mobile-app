@@ -12,6 +12,7 @@ import { actions } from '../../components/context/reducer';
 import PageTitle from '../../../../components/page-title';
 import MissionHeader from '../../components/header';
 import NavigationFooter from '../../components/navigation-footer';
+import SubHeader from '../../components/sub-header';
 
 const JobTitle = () => {
 
@@ -26,6 +27,7 @@ const JobTitle = () => {
   return (
     <>
       <MissionHeader pageName='Job key words' />
+      {data.state === 'completed' && <SubHeader />}
       <View style={{ flex: 8 }}>
         <View style={styles.title}>
           <Text style={styles.titleText}>Insert job title key words you are looking for :</Text>
