@@ -22,15 +22,16 @@ export const ADDGAME_SERVER = gql`
   }
 `
 
-export const ADDMOBILEGAME_SERVER = gql`
-  mutation addMobileGame($title: String, $players: [PlayersMobileInput]){
-    addGameMobile(input: {title: $title, players: $players}){
+export const ADD_MOBILE_GAME_SERVER = gql`
+  mutation addMobileGame($title: String, $players: [PlayersMobileInput], $owner: String){
+    addGameMobile(input: {title: $title, players: $players, owner: $owner}){
       id
       title
       players {
         name
         isApplicant
       }
+      owner
     }
   }
 `

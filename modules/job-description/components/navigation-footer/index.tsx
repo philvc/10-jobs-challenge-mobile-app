@@ -43,13 +43,16 @@ const NavigationFooter = () => {
   function handleSaveJobDescription() {
     const { step, wishList, jobTitle, companyTypes } = jobDescription
 
+    const game = JSON.parse(localStorage.getItem('selectedChallenge') || '')
+    console.log('game', game)
     const data = updateJobDescription({
       variables: {
         id: '5f46c58f06f330b93b71349d',
         description: jobTitle,
         wishList: wishList,
         step,
-        applicantId: "5e9582ecb1f1623b439af5ab"
+        applicantId: "5e9582ecb1f1623b439af5ab",
+        gameId: game.id
       }
     })
   }

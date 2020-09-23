@@ -14,6 +14,7 @@ const Dashboard = () => {
   // Attributes
   const challenge = JSON.parse(localStorage.getItem('selectedChallenge') || '')
 
+
   // Handlers
   function handleShare() {
     tryShare(

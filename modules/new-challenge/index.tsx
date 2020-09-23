@@ -4,7 +4,7 @@ import React, { useReducer, useState, useRef, useEffect } from 'react';
 import { useMutation, useApolloClient } from '@apollo/client';
 
 // graphql
-import { ADDMOBILEGAME_SERVER } from '../../graphql/mutations/server/addGameServer';
+import { ADD_MOBILE_GAME_SERVER } from '../../graphql/mutations/server/addGameServer';
 import AutoFocusTextInput from '../../components/auto-focus-text-input';
 import PageTitle from '../../components/page-title';
 import ParticipantInput from './components/participant-input';
@@ -27,7 +27,7 @@ const NewChallenge = () => {
 
 
   // queries 
-  const [addGameMutation]: any = useMutation(ADDMOBILEGAME_SERVER, {
+  const [addGameMutation]: any = useMutation(ADD_MOBILE_GAME_SERVER, {
     onCompleted({ addGameMobile }) {
 
       // update cache
@@ -56,7 +56,8 @@ const NewChallenge = () => {
     addGameMutation({
       variables: {
         title: title,
-        players: participants
+        players: participants,
+        owner: participants[0].name
       }
     })
   }

@@ -9,5 +9,6 @@ export const JOB_DESCRIPTION_DATA_FRAGMENT = gql`
     environment 
     wishList
     applicantId
+    gameId
   }
 `
