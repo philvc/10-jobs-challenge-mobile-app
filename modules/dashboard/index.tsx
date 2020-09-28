@@ -9,7 +9,7 @@ import PageBody from '../../components/page-body';
 import HomeHeader from '../../components/home-header';
 import { tryShare } from './utils';
 import { useQuery } from '@apollo/client';
-import { GET_MOBILE_MISSIONS } from '../../graphql/queries/server/getMobileMissions';
+import { GET_MOBILE_MISSIONS_SERVER } from '../../graphql/queries/server/getMobileMissionsServer';
 
 const Dashboard = () => {
 
@@ -17,9 +17,9 @@ const Dashboard = () => {
   const challenge = JSON.parse(localStorage.getItem('selectedChallenge') || '')
 
   // QUERY
-  const { loading, data, error } = useQuery(GET_MOBILE_MISSIONS, {
+  const { loading, data, error } = useQuery(GET_MOBILE_MISSIONS_SERVER, {
     variables: {
-      gameId: '5f6aec9716c90440435d6e44'
+      gameId: '5f6d978ba67c8a78cc9805f3'
     }
   })
 

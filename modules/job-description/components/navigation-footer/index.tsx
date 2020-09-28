@@ -8,27 +8,44 @@ import { actions } from '../context/reducer';
 
 // style
 import { useNavigation } from '@react-navigation/native';
-import { useMutation } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 
 // graphql
 import { UPDATE_JOB_DESCRIPTION_SERVER } from '../../../../graphql/mutations/server/updateJobDescription'
-import JobDescription from '../..';
-import { CREATE_MISSION } from '../../../../graphql/mutations/server/createMissionServer';
+
+import { SAVE_JOB_DESCRIPTION_SERVER } from '../../../../graphql/queries/server/saveJobDescription';
+import { CREATE_3_JOB_OFFERS_MISSION_SERVER } from '../../../../graphql/mutations/server/create3JobOffersMissionServer';
+import { GET_MOBILE_MISSIONS_CLIENT } from '../../../../graphql/queries/client/getMobileMissionsClient';
+import { graphql } from '@apollo/react-hoc';
 
 const NavigationFooter = () => {
 
   // Attributes
   const { data: jobDescription, dispatch } = useJobDescriptionContext()
-  const { step } = jobDescription;
-  const { wishList, jobTitle, companyTypes } = jobDescription
+  const { wishList, jobTitle, companyTypes, step } = jobDescription
   const navigation = useNavigation();
   const game = JSON.parse(localStorage.getItem('selectedChallenge') || '')
   const enumRoute = ['JobTitle', 'CompanyTypes', 'WishList', 'Congratulation']
-
+  const client = useApolloClient()
+  // TODO DASHBOARD + STEP JOB DESC MISSION + VALEUR DANS JOB DESC DATA
   // Mutations
-  const [updateJobDescription] = useMutation(UPDATE_JOB_DESCRIPTION_SERVER, {
-    onCompleted() {
-      // TODO congratulation check your dashboard you have unlocked a new mission
+  const [updateJobDescription] = useMutation(UPDATE_JOB_DESCRIPTION_SERVER)
+  console.log('step', step)
+  const [create3JobOffersMission] = useMutation(CREATE_3_JOB_OFFERS_MISSION_SERVER, {
+    onCompleted({ create3JobOffersMission }) {
+      const missions = client.readQuery({ query: GET_MOBILE_MISSIONS_CLIENT, variables: { gameId: game.id } })
+
+      const updatedMissions = missions.concat([create3JobOffersMission])
+
+      client.writeQuery({
+        query: GET_MOBILE_MISSIONS_CLIENT,
+        variables: {
+          gameId: game.id
+        },
+        data: {
+          missionsMobile: updatedMissions
+        }
+      })
       // if clicked on save go to congratulation page
       if (step === 3 && jobDescription.state === 'pending') {
         navigation.navigate('congratulation')
@@ -36,16 +53,16 @@ const NavigationFooter = () => {
     }
   })
 
-  const [createMission] = useMutation(CREATE_MISSION)
+  const [saveJobDescription] = useMutation(SAVE_JOB_DESCRIPTION_SERVER)
 
 
   // Handlers
   function handleOnPress(value: number) {
-
     // save mission update
+
     updateJobDescription({
       variables: {
-        id: '5f6aec9716c90440435d6e45',
+        id: '5f6d978ba67c8a78cc9805f4',
         description: jobTitle,
         wishList: wishList,
         gameId: game.id,
@@ -64,32 +81,19 @@ const NavigationFooter = () => {
 
   }
 
-  function handleSaveJobDescription() {
+  function handleCompleteJobDescription() {
 
-    // unlock mission 3 job offers
-    if (jobDescription.state === 'pending') {
-      createMission({
-        variables: {
-          gameId: game.id,
-          type: 'joboffers',
-          quantity: 1
-        }
-      })
-    }
-
-    // save mission
-    updateJobDescription({
+    saveJobDescription({
       variables: {
-        id: '5f6aec9716c90440435d6e45',
-        description: jobTitle,
+        missionId: '5f6d978ba67c8a78cc9805f4',
         wishList: wishList,
-        gameId: game.id,
-        environment: companyTypes,
-        state: 'completed'
       }
     })
-  }
 
+    create3JobOffersMission({ variables: { gameId: game.id } })
+
+
+  }
 
   return (
     <View style={styles.container}>
@@ -109,7 +113,7 @@ const NavigationFooter = () => {
       )
       }
       {step === 2 && companyTypes && jobTitle && wishList ? (
-        <TouchableOpacity onPress={handleSaveJobDescription}>
+        <TouchableOpacity onPress={handleCompleteJobDescription}>
           <Text style={styles.saveButtonText}>Save Mission</Text>
         </TouchableOpacity>
       )

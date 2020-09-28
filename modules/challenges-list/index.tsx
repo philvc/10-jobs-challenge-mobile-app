@@ -18,22 +18,20 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const ChallengesList = () => {
 
-  const navigation = useNavigation()
-
-  // client
+  // cache
   const client = useApolloClient()
-  // const { player }: any = client.readQuery({ query: GET_PLAYER_CLIENT })
   const { gamesMobile }: any = client.readQuery({
     query: GET_GAMES_CLIENT_MOBILE,
   })
 
-  console.log('challenges list', gamesMobile)
-
   // state
   const [gamesList, setGamesList] = React.useState(gamesMobile)
   const [isModalVisible, setIsModalVisible] = React.useState(false)
+  const navigation = useNavigation()
 
-  // effetct
+
+
+  // component is mounted & recalled
   useFocusEffect(
     React.useCallback(() => {
 

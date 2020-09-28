@@ -20,7 +20,7 @@ const JobDescription = () => {
   const Stack = createStackNavigator()
   const client = useApolloClient()
   const mission = client.readFragment({
-    id: 'MissionMobile:5f6aec9716c90440435d6e45',
+    id: 'MissionMobile:5f6d978ba67c8a78cc9805f4',
     fragment: gql`
       fragment JobDescMission on MissionMobile {
         id

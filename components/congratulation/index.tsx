@@ -16,6 +16,7 @@ const Congratulation = () => {
               Congratulations !
               💪
       </Text>
+            <Text>You have unlocked a new mission, let check it out</Text>
           </View>
         </PageBody>
       </PageContainer>

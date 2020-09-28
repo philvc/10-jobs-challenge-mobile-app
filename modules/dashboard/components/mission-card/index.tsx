@@ -17,26 +17,14 @@ const MissionCard = ({ mission }: any) => {
   // utils
   function getMissionRoute() {
     switch (mission.type) {
-      case 0:
+      case "jobdescription":
         return 'jobdescription'
-      case 1:
-        return 'threejoboffers';
+      case "joboffers":
+        return 'joboffers';
       default:
         return 'dashboard'
     }
   }
-
-  function getMissionName() {
-    switch (mission.type) {
-      case 0:
-        return 'Job Description';
-      case 1:
-        return '3 Job Offers';
-      default:
-        return 'no mission title'
-    }
-  }
-
 
 
 
@@ -45,7 +33,7 @@ const MissionCard = ({ mission }: any) => {
     <View style={styles.dashboardItem}>
       <Image style={styles.dashboardItemIcon} source={require(`../../assets/lock${mission.isLocked ? '' : '-unlock'}.svg`)} />
       <TouchableOpacity onPress={() => handleOnPress()}>
-        <Text style={styles.dashboardItemText}>{getMissionName()}</Text>
+        <Text style={styles.dashboardItemText}>{mission.title}</Text>
       </TouchableOpacity>
     </View>
   )
